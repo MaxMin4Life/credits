@@ -5,43 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Seán Penney — Game & Interactive Credits</title>
-
-  <meta
-    name="description"
-    content="Game and interactive product credits for producer and product leader Seán Penney."
-  >
+  <meta name="description" content="Selected game and interactive product credits for producer and product leader Seán Penney.">
 
   <style>
     :root {
       --text: #202124;
-      --muted: #666b73;
+      --muted: #626871;
       --line: #d8dadd;
       --background: #ffffff;
-      --panel: #f7f8f9;
+      --panel: #f6f8fa;
+      --panel-strong: #eef3f7;
       --link: #285d8f;
-      --max-width: 1050px;
+      --accent: #173f63;
+      --max-width: 1080px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       background: var(--background);
       color: var(--text);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 17px;
       line-height: 1.55;
     }
@@ -53,7 +39,7 @@
     }
 
     header {
-      margin-bottom: 56px;
+      margin-bottom: 38px;
       padding-bottom: 32px;
       border-bottom: 2px solid var(--text);
     }
@@ -74,7 +60,7 @@
     }
 
     .intro {
-      max-width: 760px;
+      max-width: 790px;
       margin-top: 24px;
       font-size: 1.05rem;
     }
@@ -93,52 +79,158 @@
       text-underline-offset: 3px;
     }
 
-    a:hover {
-      text-decoration-thickness: 2px;
+    a:hover { text-decoration-thickness: 2px; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .credits {
+    .guide {
       display: grid;
-      gap: 46px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 44px;
+      padding: 18px 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
     }
 
-    section {
-      break-inside: avoid;
+    .guide p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+
+    #credit-filter {
+      width: min(330px, 100%);
+      padding: 10px 12px;
+      border: 1px solid #aeb3b9;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.95rem;
     }
+
+    #credit-filter:focus {
+      outline: 3px solid rgba(40, 93, 143, 0.2);
+      border-color: var(--link);
+    }
+
+    .credits { display: grid; gap: 46px; }
+    section { break-inside: avoid; }
 
     h2 {
-      margin: 0 0 18px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid var(--line);
+      margin: 0 0 8px;
       font-size: 1.55rem;
       line-height: 1.2;
       letter-spacing: -0.015em;
     }
 
-    ul {
+    .section-context {
+      max-width: 850px;
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .credit-list {
       margin: 0;
       padding: 0;
       list-style: none;
+      border-top: 1px solid var(--line);
     }
 
-    li {
+    .credit {
+      position: relative;
+      border-bottom: 1px solid #e7e9ec;
+    }
+
+    .credit[open] { background: var(--panel); }
+
+    .credit summary {
       display: grid;
-      grid-template-columns: minmax(240px, 1fr) minmax(170px, 0.7fr);
+      grid-template-columns: minmax(240px, 1fr) minmax(170px, 0.7fr) 1.3rem;
       gap: 20px;
-      padding: 9px 0;
-      border-bottom: 1px solid #eceef0;
+      align-items: baseline;
+      padding: 11px 8px;
+      cursor: pointer;
+      list-style: none;
     }
 
-    li:last-child {
-      border-bottom: 0;
-    }
+    .credit summary::-webkit-details-marker { display: none; }
+    .credit summary:focus-visible { outline: 3px solid rgba(40, 93, 143, 0.25); outline-offset: -3px; }
 
-    .title {
+    .credit summary::after {
+      content: "+";
+      color: var(--link);
+      font-size: 1.2rem;
       font-weight: 600;
+      line-height: 1;
     }
 
-    .detail {
+    .credit[open] summary::after { content: "−"; }
+    .credit-title { font-weight: 650; }
+    .credit-detail { color: var(--muted); }
+
+    .credit-body {
+      max-width: 850px;
+      padding: 0 42px 19px 8px;
+    }
+
+    .credit-body p { margin: 0 0 9px; }
+    .credit-body p:last-child { margin-bottom: 0; }
+
+    .contribution-label {
+      color: var(--accent);
+      font-weight: 650;
+    }
+
+    .reference-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 15px;
+      padding-top: 2px;
+      font-size: 0.93rem;
+    }
+
+    .credit-preview {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      left: 8px;
+      bottom: calc(100% - 4px);
+      width: min(560px, calc(100vw - 64px));
+      padding: 13px 15px;
+      color: #fff;
+      background: #202830;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+      font-size: 0.9rem;
+      line-height: 1.42;
+      pointer-events: none;
+    }
+
+    .credit-preview strong { display: block; margin-bottom: 3px; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .credit:not([open]):hover .credit-preview,
+      .credit:not([open]):focus-within .credit-preview { display: block; }
+    }
+
+    .empty-state {
+      display: none;
+      margin: 20px 0 0;
+      padding: 18px;
       color: var(--muted);
+      background: var(--panel);
+      border-radius: 6px;
     }
 
     footer {
@@ -149,369 +241,228 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 680px) {
-      main {
-        padding: 40px 22px 56px;
-      }
-
-      header {
-        margin-bottom: 40px;
-      }
-
-      li {
-        display: block;
-        padding: 11px 0;
-      }
-
-      .detail {
-        display: block;
-        margin-top: 2px;
-        font-size: 0.93rem;
-      }
+    @media (max-width: 760px) {
+      main { padding: 40px 22px 56px; }
+      header { margin-bottom: 32px; }
+      .guide { grid-template-columns: 1fr; }
+      #credit-filter { width: 100%; }
+      .credit summary { display: grid; grid-template-columns: minmax(0, 1fr) 1.3rem; gap: 3px 12px; }
+      .credit-detail { grid-column: 1; font-size: 0.93rem; }
+      .credit summary::after { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+      .credit-body { padding-right: 8px; }
     }
 
     @media print {
-      main {
-        max-width: none;
-        padding: 0;
-      }
-
-      .contact {
-        display: none;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+      main { max-width: none; padding: 0; }
+      .contact, .guide, .credit-preview { display: none !important; }
+      a { color: inherit; text-decoration: none; }
+      .credit summary::after { display: none; }
+      .credit-body { display: block; }
     }
   </style>
 </head>
 
 <body>
   <main>
-
     <header>
       <h1>Seán Penney</h1>
-
-      <p class="subtitle">
-        Game &amp; Interactive Credits
-      </p>
-
+      <p class="subtitle">Game &amp; Interactive Credits</p>
       <p class="intro">
-        Producer, product leader, designer, writer, and developer with credits
-        spanning AAA, independent, online, mobile, web, console, AR/VR, SaaS,
-        and live-service development.
+        Producer, product leader, designer, writer, and developer with credits spanning
+        AAA, independent, online, mobile, web, console, AR/VR, SaaS, and live-service development.
+        Hover over a title for the short version; click or tap it for contribution notes and references.
       </p>
 
-<div class="contact">
-  <a href="https://maxmin4life.github.io/cv/">
-    CV
-  </a>
-
-  <strong>Full Credits</strong>
-
-  <a href="https://maxmin4life.github.io/creative-production/">
-    Creative Production
-  </a>
-
-  <a href="https://maxmin4life.github.io/career-foundations/">
-    Career Foundations
-  </a>
-
-  <a href="https://www.linkedin.com/in/se%C3%A1n-penney-6342aa1/">
-    LinkedIn
-  </a>
-
-  <a href="mailto:seanpenney604@gmail.com">
-    Email
-  </a>
-</div>
+      <nav class="contact" aria-label="Portfolio navigation">
+        <a href="https://maxmin4life.github.io/cv/">CV</a>
+        <strong>Full Credits</strong>
+        <a href="https://maxmin4life.github.io/creative-production/">Creative Production</a>
+        <a href="https://maxmin4life.github.io/career-foundations/">Career Foundations</a>
+        <a href="https://www.linkedin.com/in/se%C3%A1n-penney-6342aa1/">LinkedIn</a>
+        <a href="mailto:seanpenney604@gmail.com">Email</a>
+      </nav>
     </header>
 
-
-    <div class="credits">
-
-      <section>
-        <h2>Tempo Games / Tempo Storm</h2>
-        <ul>
-          <li>
-            <span class="title">The Bazaar</span>
-            <span class="detail">PC / Mac / Steam / Mobile</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Pocket Piñata Interactive</h2>
-        <ul>
-          <li>
-            <span class="title">QRTR Esports Gaming Platform</span>
-            <span class="detail">Mobile / Regulated Gaming</span>
-          </li>
-          <li>
-            <span class="title">NFT Sci-Fi Racing MMORPG</span>
-            <span class="detail">PC / Unreal Engine 5</span>
-          </li>
-          <li>
-            <span class="title">The Littles NFT MMO</span>
-            <span class="detail">Web</span>
-          </li>
-          <li>
-            <span class="title">Hidden Heroes</span>
-            <span class="detail">AR / Mobile</span>
-          </li>
-          <li>
-            <span class="title">Fingerworks Telestrator</span>
-            <span class="detail">PC</span>
-          </li>
-          <li>
-            <span class="title">Time Hoppers RPG</span>
-            <span class="detail">Consultant / Web</span>
-          </li>
-          <li>
-            <span class="title">Machine vs Zombies</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Box Critters Kung Fu</span>
-            <span class="detail">Prototype / Mobile</span>
-          </li>
-          <li>
-            <span class="title">LEGO: Hidden Side</span>
-            <span class="detail">AR / Mobile</span>
-          </li>
-          <li>
-            <span class="title">Atari Tanks and Puzzles</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Hotel Transylvania Blast</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Ty's Beanie Blast</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Walking Dead: Outbreak</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Dreamcraft — Hexagonal Room</span>
-            <span class="detail">VR Ride Room</span>
-          </li>
-          <li>
-            <span class="title">Kinzoo — Doodles</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Kinzoo — Drawn Together</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">PBS Scribbles &amp; Ink</span>
-            <span class="detail">HTML5</span>
-          </li>
-          <li>
-            <span class="title">Cannafarm</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">The Aetherlight MMO</span>
-            <span class="detail">PC / Mobile</span>
-          </li>
-          <li>
-            <span class="title">Forged in Fire: Mastersmith</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Draw a Stickman: Epic 3</span>
-            <span class="detail">PC / Mobile</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Agents of Discovery / Morningstar Interactive</h2>
-        <ul>
-          <li>
-            <span class="title">Agents of Discovery</span>
-            <span class="detail">Mobile / Web</span>
-          </li>
-          <li>
-            <span class="title">Agents of Nature</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Entour</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Cengage</span>
-            <span class="detail">PC</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>One More Story Games</h2>
-        <ul>
-          <li>
-            <span class="title">StoryStylus Platform</span>
-            <span class="detail">PC</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Ayogo Health, Inc.</h2>
-        <ul>
-          <li>
-            <span class="title">Healthseeker</span>
-            <span class="detail">Mobile / Web</span>
-          </li>
-          <li>
-            <span class="title">FuckCancer</span>
-            <span class="detail">Web</span>
-          </li>
-          <li>
-            <span class="title">Monster Manor</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">Diabesties</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">I ♥ Jellyfish</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">DiabetesSisters</span>
-            <span class="detail">Mobile</span>
-          </li>
-          <li>
-            <span class="title">SisterMatch</span>
-            <span class="detail">Mobile</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Kibble Games Studios</h2>
-        <ul>
-          <li>
-            <span class="title">Generations</span>
-            <span class="detail">PC</span>
-          </li>
-          <li>
-            <span class="title">Millennium Man</span>
-            <span class="detail">Writer / Webisodic</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Electronic Arts / EA Black Box</h2>
-        <ul>
-          <li>
-            <span class="title">Prototyped Multiple New IP</span>
-            <span class="detail">Console / PC</span>
-          </li>
-          <li>
-            <span class="title">Need for Speed World Online</span>
-            <span class="detail">PC</span>
-          </li>
-          <li>
-            <span class="title">NFS.com</span>
-            <span class="detail">Web</span>
-          </li>
-          <li>
-            <span class="title">NBA Street Online Korea</span>
-            <span class="detail">Free-to-Play / PC</span>
-          </li>
-          <li>
-            <span class="title">Wing Commander Arena</span>
-            <span class="detail">Xbox Live Arcade</span>
-          </li>
-          <li>
-            <span class="title">FIFA Online Korea</span>
-            <span class="detail">Free-to-Play / PC</span>
-          </li>
-          <li>
-            <span class="title">FIFA Street 2</span>
-            <span class="detail">PS2 / Xbox / GameCube</span>
-          </li>
-          <li>
-            <span class="title">FIFA 06</span>
-            <span class="detail">
-              PS2 / Xbox / Xbox 360 / GameCube / PC / PSP / NDS / GBA
-            </span>
-          </li>
-          <li>
-            <span class="title">NBA Street Vol. 2 &amp; NBA Street V3</span>
-            <span class="detail">Console</span>
-          </li>
-          <li>
-            <span class="title">SSX, SSX Tricky &amp; SSX 3</span>
-            <span class="detail">Console</span>
-          </li>
-          <li>
-            <span class="title">The Sims</span>
-            <span class="detail">R&amp;D / Prototyping</span>
-          </li>
-          <li>
-            <span class="title">The Sims Online</span>
-            <span class="detail">R&amp;D / Prototyping / PC</span>
-          </li>
-          <li>
-            <span class="title">Sled Storm</span>
-            <span class="detail">PlayStation</span>
-          </li>
-          <li>
-            <span class="title">The Sims Chat</span>
-            <span class="detail">Avatar Chat</span>
-          </li>
-          <li>
-            <span class="title">Jones Me</span>
-            <span class="detail">PC MMO</span>
-          </li>
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Ice Online</h2>
-        <ul>
-          <li>
-            <span class="title">The Majic Realm</span>
-            <span class="detail">MUD / PC</span>
-          </li>
-          <li>
-            <span class="title">The Twilight Lands</span>
-            <span class="detail">MMORPG / PC</span>
-          </li>
-          <li>
-            <span class="title">Social MMO Prototype for EA</span>
-            <span class="detail">PC</span>
-          </li>
-        </ul>
-      </section>
-
+    <div class="guide">
+      <p>Every listed product now has an expandable project entry. Several are working notes awaiting more detail as the archive is rebuilt.</p>
+      <label>
+        <span class="visually-hidden">Filter credits</span>
+        <input id="credit-filter" type="search" placeholder="Filter titles, platforms, or roles…" autocomplete="off">
+      </label>
     </div>
 
+    <div id="credits" class="credits"></div>
+    <p id="empty-state" class="empty-state">No credits match that search.</p>
 
-    <footer>
-      © Seán Penney
-    </footer>
-
+    <footer>© Seán Penney</footer>
   </main>
+
+  <script>
+    const portfolio = [
+      {
+        studio: "Tempo Games / Tempo Storm",
+        context: "Senior Producer supporting a cross-platform live product, modernization work, release readiness, and development operations.",
+        credits: [
+          {
+            title: "The Bazaar",
+            detail: "PC / Mac / Steam / Mobile",
+            role: "Senior Producer",
+            note: "Led and supported cross-platform delivery, mobile development, release readiness, DevOps, and the migration from Unity 2022 to Unity 6."
+          }
+        ]
+      },
+      {
+        studio: "Pocket Piñata Interactive",
+        context: "Product, production, creative, and operational leadership across a studio portfolio of commissioned, original, licensed, regulated, and live products.",
+        credits: [
+          { title: "QRTR Esports Gaming Platform", detail: "Mobile / Regulated Gaming", role: "Chief Product & Operations leadership", note: "Led product and studio delivery for a large-scale social esports and regulated-gaming platform, including platform, compliance, client, and multi-team production concerns." },
+          { title: "NFT Sci-Fi Racing MMORPG", detail: "PC / Unreal Engine 5", role: "Product and creative leadership", note: "Led early product vision, design, and production for an online multiplayer racing world developed in Unreal Engine 5." },
+          { title: "The Littles NFT MMO", detail: "Web / WAGMI Studio", role: "Product, design, and production leadership", note: "Pocket Piñata collaborated with WAGMI Studio on an online world built around The Littles. The surviving prototype material includes social spaces and game systems such as the Lab's dice-reroll flow.", links: [["WAGMI Studio", "https://www.wagmi-studio.com/about"], ["Prototype video", "https://www.youtube.com/watch?v=1LROQm5z-ic"], ["Archived design documentation", "https://the-littles.gitbook.io/the-littles-welcome-to-playside/lets-1up-the-lab/reroll-dice"]] },
+          { title: "Hidden Heroes", detail: "AR / Mobile", role: "Studio product and production leadership", note: "Led or supported product definition and delivery. Additional project-specific notes are being reconstructed from the studio archive." },
+          { title: "Fingerworks Telestrator", detail: "PC", role: "Studio product and production leadership", note: "Led or supported delivery of interactive broadcast-production technology. Additional project-specific notes are being assembled." },
+          { title: "Time Hoppers RPG", detail: "Consultant / Web", role: "Product and development consultant", note: "Advised on product, design, and development. Additional contribution detail is being assembled." },
+          { title: "Machine vs Zombies", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported product development and delivery. Additional project-specific notes are being assembled." },
+          { title: "Box Critters Kung Fu", detail: "Prototype / Mobile", role: "Studio product and production leadership", note: "Led or supported prototype development for a Kung Fu-themed Box Critters experience." },
+          { title: "LEGO: Hidden Side", detail: "AR / Mobile", role: "Studio product and production leadership", note: "Led or supported commissioned AR/mobile development within Pocket Piñata's multi-project portfolio.", links: [["Product background", "https://en.wikipedia.org/wiki/Lego_Hidden_Side"]] },
+          { title: "Atari Tanks and Puzzles", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported mobile product development using classic Atari IP. Additional project-specific notes are being assembled." },
+          { title: "Hotel Transylvania Blast", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported production and live product delivery for the licensed mobile title." },
+          { title: "Ty's Beanie Blast", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported production and delivery for the licensed mobile title." },
+          { title: "Walking Dead: Outbreak", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported production and delivery for a mobile project based on The Walking Dead IP." },
+          { title: "Dreamcraft — Hexagonal Room", detail: "VR Ride Room", role: "Studio product and production leadership", note: "Led or supported an immersive VR ride-room experience. Additional project-specific notes are being assembled." },
+          { title: "Kinzoo — Doodles", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported child-focused creative mobile development for Kinzoo." },
+          { title: "Kinzoo — Drawn Together", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported child-focused collaborative drawing and mobile development for Kinzoo." },
+          { title: "PBS Scribbles & Ink", detail: "HTML5", role: "Studio product and production leadership", note: "Led or supported delivery of a children's creative-play web experience for PBS Kids.", links: [["PBS Kids series", "https://pbskids.org/scribblesandink"]] },
+          { title: "Cannafarm", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported mobile product development and delivery. Additional project-specific notes are being assembled." },
+          { title: "The Aetherlight MMO", detail: "PC / Mobile", role: "Studio product and production leadership", note: "Led or supported development and delivery for the cross-platform online role-playing game.", links: [["Official site", "https://theaetherlight.com/"]] },
+          { title: "Forged in Fire: Mastersmith", detail: "Mobile", role: "Studio product and production leadership", note: "Led or supported development and delivery of the licensed mobile game." },
+          { title: "Draw a Stickman: Epic 3", detail: "PC / Mobile", role: "Studio product and production leadership", note: "Led or supported cross-platform development and delivery for the drawing-driven adventure game.", links: [["Official product page", "https://drawastickman.com/epic3/"]] }
+        ]
+      },
+      {
+        studio: "Agents of Discovery / Morningstar Interactive",
+        context: "Creative Director/Producer and later CTO. Designed and implemented products, scripted content in JSON, pitched clients, maintained client relationships and web properties, and helped turn the work into a scalable SaaS platform.",
+        credits: [
+          { title: "Agents of Discovery", detail: "Mobile / Web / SaaS", role: "Creative Director, Producer, and CTO", note: "Helped shape the location-based learning platform, created and maintained client experiences, supported client relationships and updates, and pitched the SaaS model that enabled the platform to scale to hundreds of sites.", links: [["Official site", "https://agentsofdiscovery.com/"], ["App Store", "https://apps.apple.com/us/app/agents-of-discovery/id986188357"]] },
+          { title: "Agents of Nature", detail: "Mobile / Web", role: "Creative direction, design, scripting, and client delivery", note: "Created location-based nature experiences and supporting sites, including JSON-scripted missions, client-facing updates, and ongoing relationship management." },
+          { title: "Entour", detail: "Mobile", role: "Creative direction and production", note: "Contributed to product design and delivery while supporting the associated client relationship, application, and web presence." },
+          { title: "Cengage Learning Interactive Science Simulations", detail: "Web / University Education", role: "Pitch, design, and implementation", note: "Pitched, designed, and implemented a series of interactive digital science toys and simulations for university students. One example turned photosynthesis into a working visual system: students dragged labels and components from containers onto a skeletal model to make the process run." }
+        ]
+      },
+      {
+        studio: "PB&J Games — One More Story Games (Client)",
+        context: "Client engagement undertaken through PB&J Games during Seán's independent consulting period.",
+        credits: [
+          { title: "StoryStylus Platform", detail: "Web / Interactive Narrative", role: "Product, design, and production consulting", note: "Contributed to an interactive-story creation platform designed to let writers build, publish, and play branching narrative games.", links: [["StoryStylus", "https://storystylus.com/"]] }
+        ]
+      },
+      {
+        studio: "PB&J Games — Ayogo Games (Client)",
+        context: "Contract Producer operating as Executive Producer for the studio's health and gamification portfolio: client objectives, RFPs, scope, schedules, budgets, milestones, reviews, creative direction, and team mentorship.",
+        credits: [
+          { title: "The Demikhov Project", detail: "Facebook / Fuck Cancer", role: "Executive Producer", note: "Produced a social health project for Fuck Cancer, translating client goals into a deliverable product and directing development." },
+          { title: "Healthseeker", detail: "Facebook / Mobile", role: "Executive Producer", note: "Produced a gamified health experience for the Diabetes Hands Foundation across social and mobile platforms." },
+          { title: "SisterMatch", detail: "PC Online", role: "Executive Producer", note: "Produced an online peer-connection experience for DiabetesSisters." },
+          { title: "Monster Manor", detail: "Mobile / Original IP", role: "Executive Producer", note: "Produced and helped develop an in-house mobile game concept." },
+          { title: "Diabesties", detail: "Mobile", role: "Executive Producer / health gamification portfolio", note: "Supported product and production within Ayogo's health-gamification practice. Additional project-specific notes are being assembled." },
+          { title: "I ♥ Jellyfish", detail: "Mobile", role: "Executive Producer / health gamification portfolio", note: "Supported product and production within Ayogo's mobile portfolio. Additional project-specific notes are being assembled." },
+          { title: "DiabetesSisters", detail: "Mobile", role: "Executive Producer / client portfolio", note: "Supported client and product delivery for DiabetesSisters. Additional project-specific notes are being assembled." }
+        ]
+      },
+      {
+        studio: "PB&J Games — Kibble Games (Client)",
+        context: "Creative direction, design, writing, and production supplied through PB&J Games across several contracts.",
+        credits: [
+          { title: "Generations", detail: "PC", role: "Creative direction, design, writing, and production", note: "Client project contribution. Additional project-specific notes are being reconstructed from earlier résumés and portfolio material." },
+          { title: "Millennium Man", detail: "Webisodic / Interactive Narrative", role: "Creative Director, designer, and writer", note: "Wrote action scripts, design documents, dialogue, and Choose Your Own Adventure-style gameplay, along with the world bible and screenplays for webisodic content. Worked with director Andy Mikita to storyboard the scripts.", links: [["Andy Mikita — IMDb", "https://www.imdb.com/name/nm0586539/"]] }
+        ]
+      },
+      {
+        studio: "Electronic Arts / EA Black Box",
+        context: "Production, online leadership, game and systems design, writing, audio, voice direction, R&D, and prototyping across shipped titles and exploratory products.",
+        credits: [
+          { title: "Multiple New-IP Prototypes", detail: "Console / PC", role: "Producer and senior designer", note: "Contributed to multiple prototype and concept initiatives. Individual concepts and contribution notes remain to be expanded where confidentiality and surviving records permit." },
+          { title: "Need for Speed World", detail: "Free-to-Play MMO / PC", role: "Producer and senior designer", note: "Developed the early online-world and metagame concepts. The project began as NFS Pump before evolving into Need for Speed World; the larger vision connected game progression, identity, community, and the franchise's web presence.", links: [["Product background", "https://en.wikipedia.org/wiki/Need_for_Speed:_World"]] },
+          { title: "NFS Connected / NFS.com", detail: "Social Network / Web", role: "Product and social-system design", note: "Designed NFS Connected as the core of NFS.com: a persistent social and progression layer intended to connect players, games, community, and the broader Need for Speed metagame." },
+          { title: "NBA Street Online Korea", detail: "Free-to-Play / PC", role: "Online production and design", note: "Contributed online product, production, and systems expertise to the Korean free-to-play adaptation." },
+          { title: "Wing Commander Arena", detail: "Xbox Live Arcade", role: "Production and online development", note: "Contributed production and online-development expertise to the Xbox Live Arcade title.", links: [["Product background", "https://en.wikipedia.org/wiki/Wing_Commander_Arena"]] },
+          { title: "FIFA Online Korea", detail: "Free-to-Play / PC", role: "Producer", note: "Produced the Korean free-to-play online football product, helping build a major live online service from EA's FIFA foundation.", links: [["Series background", "https://en.wikipedia.org/wiki/FIFA_Online"]] },
+          { title: "FIFA Street 2", detail: "PS2 / Xbox / GameCube", role: "Production and online leadership", note: "Contributed production and online leadership to the multi-platform EA BIG title.", links: [["Product background", "https://en.wikipedia.org/wiki/FIFA_Street_2"]] },
+          { title: "FIFA 06", detail: "Console / PC / Handheld", role: "Line producer and creative producer", note: "Shipped the game across all SKUs while also scripting, casting, directing, and producing video content, including the introduction, DVD extras, and unlockable in-game reward videos; managed post-production and licensing.", links: [["Product background", "https://en.wikipedia.org/wiki/FIFA_06"]] },
+          { title: "NBA Street Vol. 2 & NBA Street V3", detail: "Console", role: "Production, online, writing, and audio contributions", note: "Contributed across the celebrated EA BIG street-basketball series. Title-specific contribution notes are being expanded.", links: [["NBA Street Vol. 2", "https://en.wikipedia.org/wiki/NBA_Street_Vol._2"], ["NBA Street V3", "https://en.wikipedia.org/wiki/NBA_Street_V3"]] },
+          { title: "SSX, SSX Tricky & SSX 3", detail: "Console", role: "Production, online, writing, and audio contributions", note: "Contributed across the foundational EA BIG snowboarding series, including online, production, writing, audio, and voice-related work. Title-specific notes are being expanded.", links: [["SSX series", "https://en.wikipedia.org/wiki/SSX_(series)"]] },
+          { title: "The Sims", detail: "R&D / Prototyping", role: "Online and social-product R&D", note: "Explored how The Sims could extend into persistent online identity, community, and communication experiences." },
+          { title: "The Sims Online", detail: "R&D / Prototyping / PC", role: "Online and social-product R&D", note: "Contributed early concepts and technology exploration around persistent avatar identity, chat, and online social play.", links: [["Product background", "https://en.wikipedia.org/wiki/The_Sims_Online"]] },
+          { title: "The Sims Chat", detail: "Avatar Chat / Prototype", role: "Concept, UI/UX, and prototyping", note: "Developed an avatar-chat concept and interface work that explored how Sims identity and expression could support live online social interaction." },
+          { title: "Sled Storm", detail: "PlayStation", role: "Production and online contributions", note: "Contributed to the original PlayStation snowmobile-racing title. Project-specific notes are being expanded.", links: [["Product background", "https://en.wikipedia.org/wiki/Sled_Storm"]] },
+          { title: "Jones Me", detail: "PC MMO", role: "Online product design and prototyping", note: "Worked on an early social MMO concept. Additional project history is being reconstructed from surviving materials." }
+        ]
+      },
+      {
+        studio: "Ice Online",
+        context: "Writer, designer, Python scripter, and live operator during the formative commercial online-game era.",
+        credits: [
+          { title: "The Case of the Purloined Pearl", detail: "PC Online", role: "Screenwriter and Python scripter", note: "Wrote the screenplay and implemented interactive content in Python." },
+          { title: "The Majic Realm", detail: "Custom MUD / MMORPG / PC", role: "Writer and designer", note: "Created writing and design for a custom-built, genuinely massively multiplayer MUD. Its server room ran approximately 200 modems from a 286-based system—an unusually ambitious online architecture for its era." },
+          { title: "The Twilight Lands", detail: "3D MMORPG / PC", role: "Writer, designer, and Sys-Op", note: "Built on The Majic Realm as a broadband-enabled 3D world populated by 2D sprites. It entered the early commercial MMORPG field alongside Meridian 59, EverQuest, and Ultima Online." },
+          { title: "Online Games Room", detail: "PC Online / Live Operations", role: "Sys-Op", note: "Operated and supported a live online games community, including player-facing service and day-to-day operations." },
+          { title: "Blackheart", detail: "RPG / PC", role: "Writer", note: "Wrote narrative content for the PC role-playing game." },
+          { title: "Social MMO Prototype for EA", detail: "PC", role: "Writing, design, and online-world expertise", note: "Contributed to an early social online-world prototype for Electronic Arts before joining EA full-time. Additional project detail is being reconstructed." }
+        ]
+      }
+    ];
+
+    const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+    })[character]);
+
+    const renderLinks = (links = []) => links.length
+      ? `<p class="reference-links">${links.map(([label, url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`).join("")}</p>`
+      : "";
+
+    const renderCredit = (credit) => `
+      <details class="credit" data-search="${escapeHtml([credit.title, credit.detail, credit.role, credit.note].join(" ").toLowerCase())}">
+        <summary>
+          <span class="credit-title">${escapeHtml(credit.title)}</span>
+          <span class="credit-detail">${escapeHtml(credit.detail)}</span>
+        </summary>
+        <div class="credit-body">
+          <p><span class="contribution-label">Contribution:</span> ${escapeHtml(credit.role)}</p>
+          <p>${escapeHtml(credit.note)}</p>
+          ${renderLinks(credit.links)}
+        </div>
+        <div class="credit-preview" aria-hidden="true">
+          <strong>${escapeHtml(credit.role)}</strong>
+          ${escapeHtml(credit.note)}
+        </div>
+      </details>`;
+
+    const creditsElement = document.querySelector("#credits");
+    creditsElement.innerHTML = portfolio.map((group, groupIndex) => `
+      <section data-group="${groupIndex}">
+        <h2>${escapeHtml(group.studio)}</h2>
+        <p class="section-context">${escapeHtml(group.context)}</p>
+        <div class="credit-list">${group.credits.map(renderCredit).join("")}</div>
+      </section>`).join("");
+
+    const filterInput = document.querySelector("#credit-filter");
+    const emptyState = document.querySelector("#empty-state");
+
+    filterInput.addEventListener("input", () => {
+      const query = filterInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll(".credit").forEach((credit) => {
+        const matches = !query || credit.dataset.search.includes(query);
+        credit.hidden = !matches;
+        if (matches) visibleCount += 1;
+      });
+
+      document.querySelectorAll("#credits section").forEach((section) => {
+        section.hidden = !section.querySelector(".credit:not([hidden])");
+      });
+
+      emptyState.style.display = visibleCount ? "none" : "block";
+    });
+  </script>
 </body>
 </html>
