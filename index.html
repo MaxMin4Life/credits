@@ -424,15 +424,15 @@
         <summary>
           <span class="credit-title">${escapeHtml(credit.title)}</span>
           <span class="credit-detail">${escapeHtml(credit.detail)}</span>
+          <span class="credit-preview" aria-hidden="true">
+            <strong>${escapeHtml(credit.role)}</strong>
+            ${escapeHtml(credit.note)}
+          </span>
         </summary>
         <div class="credit-body">
           <p><span class="contribution-label">Contribution:</span> ${escapeHtml(credit.role)}</p>
           <p>${escapeHtml(credit.note)}</p>
           ${renderLinks(credit.links)}
-        </div>
-        <div class="credit-preview" aria-hidden="true">
-          <strong>${escapeHtml(credit.role)}</strong>
-          ${escapeHtml(credit.note)}
         </div>
       </details>`;
 
