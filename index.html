@@ -237,7 +237,8 @@
       z-index: 10;
       left: 8px;
       bottom: calc(100% - 4px);
-      width: min(560px, calc(100vw - 64px));
+      width: max-content;
+      max-width: min(560px, calc(100vw - 64px));
       padding: 13px 15px;
       color: #fff;
       background: #202830;
@@ -248,7 +249,7 @@
       pointer-events: none;
     }
 
-    .credit-preview strong { display: block; margin-bottom: 3px; }
+    .credit-preview strong { display: block; }
 
     @media (hover: hover) and (pointer: fine) {
       .credit:not([open]):hover .credit-preview,
@@ -464,7 +465,6 @@
           <span class="credit-detail">${escapeHtml(credit.detail)}</span>
           <span class="credit-preview" aria-hidden="true">
             <strong>${escapeHtml(credit.role)}</strong>
-            ${escapeHtml(credit.note)}
           </span>
         </summary>
         <div class="credit-body">
