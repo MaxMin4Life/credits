@@ -107,8 +107,7 @@
 
     .guide p { margin: 0; color: var(--muted); font-size: 0.93rem; }
 
-    .featured,
-    .evidence { margin-bottom: 44px; }
+    .featured { margin-bottom: 44px; }
 
     .archive-heading {
       margin: 8px 0 14px;
@@ -168,8 +167,7 @@
       transform: translateY(-2px);
     }
 
-    .featured-card:focus-visible,
-    .artifact-card:focus-visible {
+    .featured-card:focus-visible {
       outline: 3px solid rgba(40, 93, 143, 0.25);
       outline-offset: 3px;
     }
@@ -196,57 +194,6 @@
       color: var(--muted);
       font-size: 0.82rem;
       line-height: 1.42;
-    }
-
-    .artifact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .artifact-card {
-      display: grid;
-      grid-template-rows: 210px auto;
-      overflow: hidden;
-      color: var(--text);
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: border-color 140ms ease, box-shadow 140ms ease;
-    }
-
-    .artifact-card:hover {
-      border-color: #9aabb9;
-      box-shadow: 0 8px 22px rgba(23, 63, 99, 0.1);
-      text-decoration: none;
-    }
-
-    .artifact-card img {
-      display: block;
-      width: 100%;
-      height: 210px;
-      padding: 12px;
-      object-fit: contain;
-      background: #171b20;
-    }
-
-    .artifact-copy {
-      display: block;
-      padding: 13px 15px 15px;
-    }
-
-    .artifact-copy strong {
-      display: block;
-      line-height: 1.3;
-    }
-
-    .artifact-copy span {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.35;
     }
 
     #credit-filter {
@@ -446,10 +393,8 @@
       .guide { grid-template-columns: 1fr; }
       .section-heading { display: block; }
       .section-heading p { margin-top: 5px; text-align: left; }
-      .featured-grid, .artifact-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
       .featured-card { min-height: 0; }
-      .artifact-card { grid-template-rows: 190px auto; }
-      .artifact-card img { height: 190px; }
       #credit-filter { width: 100%; }
       .credit summary { display: grid; grid-template-columns: minmax(0, 1fr) 1.3rem; gap: 3px 12px; }
       .credit-detail { grid-column: 1; font-size: 0.93rem; }
@@ -459,13 +404,13 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .featured-card, .artifact-card { transition: none; }
+      .featured-card { transition: none; }
       .featured-card:hover { transform: none; }
     }
 
     @media print {
       main { max-width: none; padding: 0; }
-      .contact, .guide, .featured, .evidence, .archive-heading, .credit-preview { display: none !important; }
+      .contact, .guide, .featured, .archive-heading, .credit-preview { display: none !important; }
       a { color: inherit; text-decoration: none; }
       .credit summary::after { display: none; }
       .credit-body { display: block; }
@@ -508,14 +453,6 @@
         <p>Eight projects that show the through-line: invention, transformation, creative ownership, and delivery.</p>
       </div>
       <div id="featured-grid" class="featured-grid"></div>
-    </section>
-
-    <section class="evidence" aria-labelledby="selected-evidence-heading">
-      <div class="section-heading">
-        <h2 id="selected-evidence-heading">Selected Evidence</h2>
-        <p>A few surviving artifacts from projects whose stories extend beyond a conventional credit line.</p>
-      </div>
-      <div id="artifact-grid" class="artifact-grid"></div>
     </section>
 
     <div class="archive-heading">
@@ -696,30 +633,6 @@
       }
     ];
 
-    const selectedArtifacts = [
-      {
-        title: "Sled Storm MVP Trophy",
-        meta: "Production recognition · 1999",
-        src: "assets/sled-storm-mvp-trophy.jpg",
-        creditTitle: "Sled Storm",
-        alt: "Electronic Arts Sled Storm PlayStation MVP trophy awarded to Seán Penney in 1999"
-      },
-      {
-        title: "SSX 3 Project Plaque",
-        meta: "Preproduction design · 2003",
-        src: "assets/ssx-3-project-plaque.jpg",
-        creditTitle: "SSX 3",
-        alt: "Personalized SSX 3 PlayStation 2 project plaque presented to Seán Penney"
-      },
-      {
-        title: "Star Soldier",
-        meta: "Co-written manual and fiction sourcebook · 2007",
-        src: "https://cdn.wcnews.com/newestshots/full/starsoldier5.jpg",
-        creditTitle: "Wing Commander Arena",
-        alt: "Star Soldier in-universe magazine cover for Wing Commander Arena"
-      }
-    ];
-
     const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
     })[character]);
@@ -764,16 +677,6 @@
         <span class="featured-kicker">${escapeHtml(highlight.kicker)}</span>
         <span class="featured-title">${escapeHtml(highlight.title)}</span>
         <span class="featured-copy">${escapeHtml(highlight.copy)}</span>
-      </a>`).join("");
-
-    const artifactGrid = document.querySelector("#artifact-grid");
-    artifactGrid.innerHTML = selectedArtifacts.map((artifact) => `
-      <a class="artifact-card" href="#${creditId(artifact.creditTitle)}" data-credit-target="${creditId(artifact.creditTitle)}">
-        <img src="${escapeHtml(artifact.src)}" alt="${escapeHtml(artifact.alt)}" loading="lazy" decoding="async">
-        <span class="artifact-copy">
-          <strong>${escapeHtml(artifact.title)}</strong>
-          <span>${escapeHtml(artifact.meta)}</span>
-        </span>
       </a>`).join("");
 
     const creditsElement = document.querySelector("#credits");
