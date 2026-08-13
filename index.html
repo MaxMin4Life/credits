@@ -98,7 +98,7 @@
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 18px;
-      margin-bottom: 44px;
+      margin-bottom: 30px;
       padding: 18px 20px;
       background: var(--panel);
       border: 1px solid var(--line);
@@ -107,12 +107,8 @@
 
     .guide p { margin: 0; color: var(--muted); font-size: 0.93rem; }
 
-    .featured { margin-bottom: 44px; }
-
     .archive-heading {
-      margin: 8px 0 14px;
-      padding-top: 28px;
-      border-top: 2px solid var(--text);
+      margin: 0 0 14px;
     }
 
     .archive-heading h2 { margin: 0; }
@@ -121,79 +117,6 @@
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 0.9rem;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 14px;
-    }
-
-    .section-heading h2 { margin: 0; }
-
-    .section-heading p {
-      max-width: 620px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: right;
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 11px;
-    }
-
-    .featured-card {
-      display: flex;
-      min-height: 158px;
-      flex-direction: column;
-      padding: 17px;
-      color: var(--text);
-      background: linear-gradient(145deg, #fff 0%, var(--panel) 100%);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      text-decoration: none;
-      transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
-    }
-
-    .featured-card:hover {
-      border-color: #9aabb9;
-      box-shadow: 0 8px 22px rgba(23, 63, 99, 0.1);
-      text-decoration: none;
-      transform: translateY(-2px);
-    }
-
-    .featured-card:focus-visible {
-      outline: 3px solid rgba(40, 93, 143, 0.25);
-      outline-offset: 3px;
-    }
-
-    .featured-kicker {
-      margin-bottom: 8px;
-      color: var(--link);
-      font-size: 0.74rem;
-      font-weight: 750;
-      letter-spacing: 0.055em;
-      line-height: 1.3;
-      text-transform: uppercase;
-    }
-
-    .featured-title {
-      margin-bottom: 7px;
-      font-size: 1.02rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    .featured-copy {
-      margin-top: auto;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.42;
     }
 
     #credit-filter {
@@ -383,18 +306,10 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 900px) {
-      .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
     @media (max-width: 760px) {
       main { padding: 40px 22px 56px; }
       header { margin-bottom: 32px; }
       .guide { grid-template-columns: 1fr; }
-      .section-heading { display: block; }
-      .section-heading p { margin-top: 5px; text-align: left; }
-      .featured-grid { grid-template-columns: 1fr; }
-      .featured-card { min-height: 0; }
       #credit-filter { width: 100%; }
       .credit summary { display: grid; grid-template-columns: minmax(0, 1fr) 1.3rem; gap: 3px 12px; }
       .credit-detail { grid-column: 1; font-size: 0.93rem; }
@@ -404,13 +319,11 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .featured-card { transition: none; }
-      .featured-card:hover { transform: none; }
     }
 
     @media print {
       main { max-width: none; padding: 0; }
-      .contact, .guide, .featured, .archive-heading, .credit-preview { display: none !important; }
+      .contact, .guide, .archive-heading, .credit-preview { display: none !important; }
       a { color: inherit; text-decoration: none; }
       .credit summary::after { display: none; }
       .credit-body { display: block; }
@@ -440,20 +353,12 @@
     </header>
 
     <div class="guide">
-      <p>Start with the selected highlights, or filter the complete archive below. Date tags appear only where the chronology is established; several entries remain working notes as I rebuild my records.</p>
+      <p>Filter the complete archive by title, platform, role, or contribution. Date tags appear only where the chronology is established; several entries remain working notes as I rebuild my records.</p>
       <label>
         <span class="visually-hidden">Filter credits</span>
         <input id="credit-filter" type="search" placeholder="Filter titles, platforms, or roles…" autocomplete="off">
       </label>
     </div>
-
-    <section class="featured" aria-labelledby="selected-highlights-heading">
-      <div class="section-heading">
-        <h2 id="selected-highlights-heading">Selected Highlights</h2>
-        <p>Eight projects that show the through-line: invention, transformation, creative ownership, and delivery.</p>
-      </div>
-      <div id="featured-grid" class="featured-grid"></div>
-    </section>
 
     <div class="archive-heading">
       <h2>Complete Archive</h2>
@@ -590,49 +495,6 @@
       }
     ];
 
-    const selectedHighlights = [
-      {
-        title: "QRTR Regulated Gaming Platform",
-        kicker: "Regulated product platform",
-        copy: "Commercial shaping, P&L accountability, regulatory scrutiny, and cross-company delivery on a $5 million engagement."
-      },
-      {
-        title: "Agents of Discovery",
-        kicker: "Product invention · SaaS transformation",
-        copy: "I designed the location-based learning platform and helped turn bespoke client work into a scalable service."
-      },
-      {
-        title: "FIFA Online Korea",
-        kicker: "Free-to-play at scale · 2006",
-        copy: "I led EA and Neowiz's record-setting Korean adaptation years before free-to-play became standard inside EA."
-      },
-      {
-        title: "NFS Connected / NFS.com",
-        kicker: "Online strategy · Connected ecosystem",
-        copy: "I designed the social and progression meta for NFS.com and helped establish the foundation that became NFS World."
-      },
-      {
-        title: "Draw a Stickman: EPIC 3",
-        kicker: "Ground-up development · 5M+ downloads",
-        copy: "Product, production, data-driven systems, launch targets, and continuing live operations across PC and mobile."
-      },
-      {
-        title: "SSX Tricky",
-        kicker: "Creative production · 40,000 lines",
-        copy: "Systems, characters, writing leadership, voice direction, audio, music licensing, tuning, and production."
-      },
-      {
-        title: "The Sims Chat",
-        kicker: "Online R&D · Patented technology",
-        copy: "Expressive animated-avatar chat and dial-up asset streaming years ahead of broadband-era social products."
-      },
-      {
-        title: "Twilight Lands",
-        kicker: "Early MMORPG · Live operations",
-        copy: "World and systems design, scripting, ongoing content, community stewardship, and primary live operation."
-      }
-    ];
-
     const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
     })[character]);
@@ -667,18 +529,6 @@
         </div>
       </details>`;
 
-    const creditLookup = new Map(
-      portfolio.flatMap((group) => group.credits.map((credit) => [credit.title, { ...credit, studio: group.studio }]))
-    );
-
-    const featuredGrid = document.querySelector("#featured-grid");
-    featuredGrid.innerHTML = selectedHighlights.map((highlight) => `
-      <a class="featured-card" href="#${creditId(highlight.title)}" data-credit-target="${creditId(highlight.title)}">
-        <span class="featured-kicker">${escapeHtml(highlight.kicker)}</span>
-        <span class="featured-title">${escapeHtml(highlight.title)}</span>
-        <span class="featured-copy">${escapeHtml(highlight.copy)}</span>
-      </a>`).join("");
-
     const creditsElement = document.querySelector("#credits");
     creditsElement.innerHTML = portfolio.map((group, groupIndex) => `
       <section data-group="${groupIndex}">
@@ -689,15 +539,6 @@
 
     const filterInput = document.querySelector("#credit-filter");
     const emptyState = document.querySelector("#empty-state");
-
-    document.querySelectorAll("[data-credit-target]").forEach((link) => {
-      link.addEventListener("click", () => {
-        filterInput.value = "";
-        filterInput.dispatchEvent(new Event("input"));
-        const target = document.getElementById(link.dataset.creditTarget);
-        if (target) target.open = true;
-      });
-    });
 
     filterInput.addEventListener("input", () => {
       const query = filterInput.value.trim().toLowerCase();
